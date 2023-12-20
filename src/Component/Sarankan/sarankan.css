@@ -1,0 +1,52 @@
+.sarankan-container{
+  position: absolute;
+  right: 150px;
+  width: 300px;
+  top: 25px;
+}
+.sarankan{
+  display: flex;
+  color: white;
+  font-size: smaller;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.sarankan i{
+  font-style: normal;
+  color: #1890ff;
+}
+.sarankan i:hover{
+  color: white;
+}
+.sarankan-paragraf{
+  width: 190px;
+}
+.sarankan-paragraf p{
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.sarankan img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.disarankan{
+  color: white;
+  font-size: smaller;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+}
+.disarankan i{
+  font-weight: bolder;
+  font-style: normal;
+}
+.disarankan i:hover{
+  color: rgba(255, 255, 255, 0.5);
+}

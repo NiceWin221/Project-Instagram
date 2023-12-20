@@ -1,0 +1,130 @@
+.direct-container{
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  left: 75.5px;
+  width: 100%;
+}
+.direct{
+  cursor: pointer;
+  color: white;
+  width: 395px;
+  border-right: 1px  solid rgba(255, 255, 255, 0.2);
+}
+.direct-navbar{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 20px;
+  padding-top: 40px;
+}
+.direct-details{
+  display: flex;
+  padding: 10px 20px;
+}
+.direct-account{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.account-container{
+  overflow: scroll;
+  height: 86vh;
+}
+.direct-account:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+.direct-account img{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+}
+.direct-account-details{
+  font-size: 13px;
+}
+
+.direct-chat{
+  width: 1065px;
+  position: relative;
+}
+.direct-chat-navbar{
+  display: flex;
+  color: white;
+  padding: 15px;
+  align-items: center;
+  font-size: 17px;
+  gap: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.direct-chat-navbar img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.direct-chat-navbar i{
+  font-size: 20px;
+}
+
+
+.direct-send-message{
+  height: 82vh;
+  padding: 15px;
+  overflow: scroll;
+}
+.direct-keyboard{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 75px;
+  color: white;
+  padding: 15px 20px;
+  background: black;
+}
+.direct-keyboard-details{
+  display: flex;
+  height: 45px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 25px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+}
+.direct-keyboard-details i{
+  font-size: 25px;
+}
+.direct-keyboard-details input{
+  border: none;
+  outline: none;
+  color: white;
+  height: 30px;
+  background: transparent;
+  font-size: 15px;
+  width: 100%;
+}
+.direct-keyboard-icon{
+  margin-left: auto;
+  display: flex;
+  gap: 20px;
+}
+
+
+.message-container div{
+  margin-bottom: 5px;
+  margin-left: auto;
+}
+.message{
+  color: white;
+  background: rgb(55, 151, 240);
+  height: 30px;
+  width: fit-content;
+  border-radius: 15px;
+  text-align: center;
+  font-weight: lighter;
+  font-size: 15px;
+  padding: 6px 10px;
+}
+
+
+

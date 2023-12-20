@@ -1,0 +1,197 @@
+.profile{
+  position: absolute;
+  left: 400px;
+  width: 940px;
+  color: white;
+}
+.profile-details{
+  display: flex;
+  padding: 30px 85px;
+}
+.profile-picture img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.profile-account{
+  padding: 10px;
+  margin-left: 100px;
+}
+.profile-name{
+  display: flex;
+  font-size: 18px;
+  gap: 15px;
+  align-items: center;
+}
+.profile-name button{
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 7px 15px;
+  border-radius: 6px;
+  color: white;
+  font-size: 15px;
+}
+.profile-follow{
+  display: flex;
+  margin-top: 20px;
+  gap: 35px;
+}
+.profile-follow span{
+  color: rgba(255, 255, 255, 0.9);
+}
+.profile-description{
+  margin-top: 20px;
+}
+
+
+.profile-story{
+  padding: 10px 55px;
+}
+.profile-story-add{
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  width: fit-content;
+  padding: 3px;
+  border-radius: 50%;
+  width: 89px;
+  height: 89px;
+  text-align: center;
+}
+.profile-story-add button{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  align-items: center;
+  text-align: center;
+}
+.profile-story-add i{
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+
+.profile-post{
+  margin-top: 80px;
+  display: flex;
+  border-top: 2px solid rgba(255, 255, 255, 0.15);
+  justify-content: center;
+  gap: 60px;
+  font-size: 12px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.postingan.active{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 20px 0;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+.tersimpan.active{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 20px 5px;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+.disukai.active{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  padding: 20px 12px;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+.postingan{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0);
+  padding: 20px 0;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+.tersimpan{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0);
+  padding: 20px 5px;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+.disukai{
+  display: flex;
+  gap: 10px;
+  border-top: 2px solid rgba(255, 255, 255, 0);
+  padding: 20px 12px;
+  position: relative;
+  bottom: 2px;
+  border-radius: 2px;
+}
+
+
+.posted{
+  text-align: center;
+  margin-top: 60px;
+}
+.posted i {
+  font-size: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  padding: 15px;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.3);
+}
+.posted h1{
+  font-size: 35px;
+  font-weight: bolder;
+}
+
+.saved-parent{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+.saved-post{
+  width: 301px;
+  height: 301px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.saved-cover{
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 5px 0 0 0;
+}
+.saved-cover img{
+  width: 150px;
+}
+
+
+
+.meta{
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+.meta i{
+  border: 1px solid;
+  padding: 2px;
+  border-radius: 50%;
+  font-size: 7px;
+}
+.meta p{
+  font-size: 11px;
+}

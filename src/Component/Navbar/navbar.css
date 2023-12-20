@@ -1,0 +1,213 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&family=Satisfy&display=swap");
+
+.navbar {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  width: 245px;
+  color: rgba(255, 255, 255);
+  height: 100vh;
+  position: fixed;
+  transition: 0.2s ease-in-out;
+}
+.instagram-icon{
+  position: absolute;
+  font-size: 0;
+  left: 35px;
+  top: 35px;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+.navbar.slide{
+  width: 75px;
+}
+.navbar.slide p{
+  opacity: 0;
+}
+.navbar.slide h1{
+  opacity: 0;
+}
+.navbar.slide .instagram-icon{
+  opacity: 1;
+  font-size: 1px;
+  transform: scale(25);
+}
+.navbar h1 {
+  font-family: "Satisfy", cursive;
+  font-weight: lighter;
+  font-size: 27px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+.navbar-page {
+  padding: 15px;
+}
+.navbar-page i {
+  font-size: 23px;
+  margin-right: 5px;
+}
+.navbar-home {
+  display: flex;
+  width: 100%;
+  border-radius: 7px;
+  transition: ease-out 0.15s;
+  margin-top: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+.navbar-home:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.navbar-home p {
+  background: transparent;
+  margin-left: 5px;
+}
+.navbar-home img {
+  width: 47px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.navbar-home i {
+  background: transparent;
+  padding: 10px;
+  border-radius: 7px;
+}
+.navbar-home i.clicked {
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  padding: 9px;
+}
+
+/*-------------------------------- Search-Profile -----------------------------*/
+
+.search-container{
+  z-index: -1;
+  width: 0;
+  left: 65px;
+  height: 100vh;
+  position: fixed;
+  color: white;
+  background: black;
+  opacity: -1;
+  transition: 0.2s ease-in-out;
+}
+.search-container.active{
+  width: 400px;
+  opacity: 1;
+  z-index: 10;
+}
+h1{
+  padding: 20px;
+  font-weight: lighter;
+  font-size: 25px;
+  cursor: pointer;
+}
+.search-input{
+  padding: 20px;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.search-input input{
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  height: 40px;
+  border-radius: 7px;
+  padding-left: 20px;
+  color: white;
+}
+.search{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  cursor: pointer;
+}
+.search p{
+  font-weight: bolder;
+}
+.search i{
+  font-style: normal;
+  color: #1890ff;
+}
+.search i:hover{
+  color: white;
+}
+.search-profile{
+  width: 100%;
+  display: flex;
+  color: white;
+  font-size: smaller;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px 20px;
+}
+.search-profile:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+.search-profile i{
+  font-style: normal;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-left: auto;
+}
+.search-profile i:hover{
+  color: white;
+}
+.search-paragraf p{
+  font-size: 13px;
+}
+.search-paragraf-dot i{
+  font-size: 3px;
+  color: rgba(255, 255, 255, 0.5);
+}
+.search-profile img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.search-paragraf-dot{
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.notification-container{
+  display: flex;
+  padding: 10px 20px;
+  font-size: smaller;
+  gap: 15px;
+  align-items: center;
+  cursor: pointer;
+}
+.notification-container:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+.notification-container img{
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.notification-container button{
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 8px 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+}
+.notification-container button:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+.notification-container i{
+  font-style: normal;
+  border: none;
+  background: #1890ff;
+  padding: 8px 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+}
+.notification-container i:hover{
+  background: rgba(24, 144, 255, 0.85);
+}
