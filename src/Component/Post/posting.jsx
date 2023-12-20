@@ -39,12 +39,26 @@ export default function Posting({
     setPostLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
   };
 
-  const handleSaved = () => {
+  const handleSaved = ({ profileImg,
+    username,
+    postImg,
+    postTime,
+    likes,
+    caption,
+    commentar }) => {
+    console.log({
+      profileImg,
+      username,
+      postImg,
+      postTime,
+      likes,
+      caption,
+      commentar
+    })
     setSaved(!saved);
   };
 
   useEffect(() => {
-    // Cleanup function to reset lastTap when component unmounts
     return () => setLastTap(0);
   }, []);
 
@@ -67,11 +81,21 @@ export default function Posting({
         <i className={`fa-${liked === true ? 'solid' : 'regular'} fa-heart ${liked === true ? 'liked' : ''}`} onClick={handleLiked}></i>
         <i className="fa-regular fa-comment"></i>
         <i className="fa-solid fa-paper-plane"></i>
-        <i className={`fa-${saved === true ? 'solid' : 'regular'} fa-bookmark ${saved === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={handleSaved}></i>
+        <i className={`fa-${saved === true ? 'solid' : 'regular'} fa-bookmark ${saved === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={() => {
+          handleSaved({
+            profileImg,
+            username,
+            postImg,
+            postTime,
+            likes,
+            caption,
+            commentar
+          })
+        }}></i>
       </div>
       <div className="post-details">
         <p>{postLikes} likes</p>
-        <p><span>{username}</span> <span style={{color: 'rgba(255, 255, 255, 0.85)'}}>{caption}</span> <span style={{color: 'rgba(255, 255, 255, 0.5)'}}>selengkapnya</span></p>
+        <p><span>{username}</span> <span style={{ color: 'rgba(255, 255, 255, 0.85)' }}>{caption}</span> <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>selengkapnya</span></p>
         <p style={{ color: 'rgba(255,255,255, 0.5)' }}>Lihat semua {commentar} komentar</p>
         <input type="text" placeholder='Tambahkan komentar...' />
       </div>
