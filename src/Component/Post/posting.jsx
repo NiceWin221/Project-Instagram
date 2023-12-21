@@ -7,10 +7,19 @@ export default function Posting({
   postTime,
   likes,
   caption,
-  commentar
+  commentar,
+  savedPosts,
+  setSavedPosts,
+  bookmark,
+  setBookmark
 }) {
   const [liked, setLiked] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState(() => {
+    // Initialize with local storage value or default to false
+    const savedState = localStorage.getItem('savedState');
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
   const [postLikes, setPostLikes] = useState(likes);
   const [showPopUp, setShowPopUp] = useState(false);
   const [lastTap, setLastTap] = useState(0);
@@ -39,24 +48,22 @@ export default function Posting({
     setPostLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
   };
 
-  const handleSaved = ({ profileImg,
-    username,
-    postImg,
-    postTime,
-    likes,
-    caption,
-    commentar }) => {
-    console.log({
-      profileImg,
-      username,
-      postImg,
-      postTime,
-      likes,
-      caption,
-      commentar
-    })
-    setSaved(!saved);
+  const handleSaved = () => {
+    // Check if the post is already saved
+    const isAlreadySaved = savedPosts.some((post) => post.postImg === postImg);
+
+    if (!isAlreadySaved) {
+      // Save the post
+      setSavedPosts([...savedPosts, { profileImg, username, postImg, postTime, likes, caption, commentar }]);
+    } else {
+      // Unsave the post
+      setSavedPosts(savedPosts.filter((post) => post.postImg !== postImg));
+    }
+
+    // Toggle the saved state
+    setBookmark(!bookmark)
   };
+
 
   useEffect(() => {
     return () => setLastTap(0);
@@ -81,7 +88,7 @@ export default function Posting({
         <i className={`fa-${liked === true ? 'solid' : 'regular'} fa-heart ${liked === true ? 'liked' : ''}`} onClick={handleLiked}></i>
         <i className="fa-regular fa-comment"></i>
         <i className="fa-solid fa-paper-plane"></i>
-        <i className={`fa-${saved === true ? 'solid' : 'regular'} fa-bookmark ${saved === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={() => {
+        <i className={`fa-${bookmark === true ? 'solid' : 'regular'} fa-bookmark ${bookmark === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={() => {
           handleSaved({
             profileImg,
             username,

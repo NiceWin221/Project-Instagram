@@ -160,16 +160,18 @@
   margin-top: 60px;
 }
 .saved-post{
-  width: 301px;
-  height: 301px;
+  width: 302px;
+  height: 302px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-wrap: wrap;
 }
 .saved-cover{
   width: 150px;
   height: 150px;
   overflow: hidden;
-  border-radius: 5px 0 0 0;
+  box-sizing: border-box;
 }
 .saved-cover img{
   width: 150px;

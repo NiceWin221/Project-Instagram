@@ -5,7 +5,7 @@ import Aboutus from '../Aboutus/aboutus'
 import '../Aboutus/aboutus.css'
 import Saved from './images/saved.jpg'
 
-export default function Profile() {
+export default function Profile({ savedPosts }) {
   const [active, setActive] = useState(1)
   const handleActive = (numb) => {
     setActive(numb)
@@ -63,12 +63,14 @@ export default function Profile() {
       ) : ''}
       {active === 2 ? (
         <div className="saved-parent">
-        <div className="saved-post">
-          <div className="saved-cover">
-            <img src={Saved} />
+          <div className="saved-post">
+            {savedPosts.map((post) => (
+              <div key={post.postImg} className="saved-cover">
+                <img src={post.postImg} alt={post.caption} />
+              </div>
+            ))}
           </div>
         </div>
-      </div>
       ) : ''}
       {active === 3 ? (
         <div className="liked-post">

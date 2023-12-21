@@ -29,6 +29,11 @@ export default function App() {
   const [active, setActive] = useState(0);
   const [storyScroll, setStoryScroll] = useState(0);
 
+  const [savedPosts, setSavedPosts] = useState([]);
+  const [savedPosts1, setSavedPosts1] = useState(false);
+  const [savedPosts2, setSavedPosts2] = useState(false);
+  const [savedPosts3, setSavedPosts3] = useState(false);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -36,9 +41,26 @@ export default function App() {
           path="/"
           element={
             <div className='app'>
-              <Navbar activeTab={activeTab} handleActiveTab={handleActiveTab} />
-              <Story setActive={setActive} setStoryScroll={setStoryScroll} isActive={isActive} setIsActive={setIsActive} />
-              <Post />
+              <Navbar
+                activeTab={activeTab}
+                handleActiveTab={handleActiveTab}
+              />
+              <Story
+                setActive={setActive}
+                setStoryScroll={setStoryScroll}
+                isActive={isActive}
+                setIsActive={setIsActive}
+              />
+              <Post
+                savedPosts={savedPosts}
+                setSavedPosts={setSavedPosts}
+                savedPosts1={savedPosts1}
+                setSavedPosts1={setSavedPosts1}
+                savedPosts2={savedPosts2}
+                setSavedPosts2={setSavedPosts2}
+                savedPosts3={savedPosts3}
+                setSavedPosts3={setSavedPosts3}
+              />
               <Sarankan />
             </div>
           }
@@ -47,7 +69,11 @@ export default function App() {
           path="/direct"
           element={
             <div className='app'>
-              <Navbar activeTab={activeTab} handleActiveTab={handleActiveTab} directActive={directActive} />
+              <Navbar
+                activeTab={activeTab}
+                handleActiveTab={handleActiveTab}
+                directActive={directActive}
+              />
               <Direct />
             </div>
           }
@@ -56,7 +82,12 @@ export default function App() {
           path="/story"
           element={
             <div className='app'>
-              <StoryVideo active={active} setActive={setActive} storyScroll={storyScroll} setStoryScroll={setStoryScroll} />
+              <StoryVideo
+                active={active}
+                setActive={setActive}
+                storyScroll={storyScroll}
+                setStoryScroll={setStoryScroll}
+              />
             </div>
           }
         />
@@ -64,8 +95,14 @@ export default function App() {
           path="/profile"
           element={
             <div className='app'>
-              <Navbar activeTab={activeTab} handleActiveTab={handleActiveTab}/>
-              <Profile />
+              <Navbar
+                activeTab={activeTab}
+                handleActiveTab={handleActiveTab}
+              />
+              <Profile
+                savedPosts={savedPosts}
+                setSavedPosts={setSavedPosts}
+              />
             </div>
           }
         />
