@@ -60,6 +60,16 @@ export default function Posting({
       setSavedPosts(savedPosts.filter((post) => post.postImg !== postImg));
     }
 
+    console.log({
+      profileImg,
+      username,
+      postImg,
+      postTime,
+      likes,
+      caption,
+      commentar
+    })
+
     // Toggle the saved state
     setBookmark(!bookmark)
   };

@@ -7,6 +7,8 @@ import Sarankan from './Component/Sarankan/sarankan'
 import Direct from "./Component/Direct/direct";
 import StoryVideo from "./Component/StoryVideo/storyvideo";
 import Profile from "./Component/Profile/profile";
+import Bookmark from "./Component/Bookmark/bookmark";
+import './Component/Bookmark/bookmark.css'
 import './Component/Profile/profile.css'
 import "./Component/StoryVideo/storyvideo.css";
 import './Component/Direct/direct.css'
@@ -21,18 +23,20 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(null);
   const [directActive, setDirectActive] = useState(true)
 
+
   const handleActiveTab = (index) => {
     setActiveTab((prevActiveTab) => (prevActiveTab === index ? null : index));
   };
+
 
   const [isActive, setIsActive] = useState([true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true])
   const [active, setActive] = useState(0);
   const [storyScroll, setStoryScroll] = useState(0);
 
+
   const [savedPosts, setSavedPosts] = useState([]);
-  const [savedPosts1, setSavedPosts1] = useState(false);
-  const [savedPosts2, setSavedPosts2] = useState(false);
-  const [savedPosts3, setSavedPosts3] = useState(false);
+  const [bookmark, setBookmark] = useState([false, false, false]);
+
 
   return (
     <BrowserRouter>
@@ -54,12 +58,8 @@ export default function App() {
               <Post
                 savedPosts={savedPosts}
                 setSavedPosts={setSavedPosts}
-                savedPosts1={savedPosts1}
-                setSavedPosts1={setSavedPosts1}
-                savedPosts2={savedPosts2}
-                setSavedPosts2={setSavedPosts2}
-                savedPosts3={savedPosts3}
-                setSavedPosts3={setSavedPosts3}
+                bookmark={bookmark}
+                setBookmark={setBookmark}
               />
               <Sarankan />
             </div>
@@ -101,7 +101,21 @@ export default function App() {
               />
               <Profile
                 savedPosts={savedPosts}
-                setSavedPosts={setSavedPosts}
+              />
+            </div>
+          }
+        />
+        <Route
+          path="/bookmark"
+          element={
+            <div className='app'>
+              <Navbar
+                activeTab={activeTab}
+                handleActiveTab={handleActiveTab}
+              />
+              <Bookmark
+                savedPosts={savedPosts}
+                bookmark={bookmark}
               />
             </div>
           }

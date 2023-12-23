@@ -3,12 +3,17 @@ import Profile1 from './images/profile.jpg'
 import { useState } from 'react'
 import Aboutus from '../Aboutus/aboutus'
 import '../Aboutus/aboutus.css'
-import Saved from './images/saved.jpg'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile({ savedPosts }) {
   const [active, setActive] = useState(1)
   const handleActive = (numb) => {
     setActive(numb)
+  }
+
+  const navigate = useNavigate()
+  const handleBookmark = () => {
+    navigate('/bookmark')
   }
 
   return (
@@ -63,7 +68,7 @@ export default function Profile({ savedPosts }) {
       ) : ''}
       {active === 2 ? (
         <div className="saved-parent">
-          <div className="saved-post">
+          <div className="saved-post" onClick={handleBookmark}>
             {savedPosts.map((post) => (
               <div key={post.postImg} className="saved-cover">
                 <img src={post.postImg} alt={post.caption} />

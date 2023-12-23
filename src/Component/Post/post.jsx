@@ -9,12 +9,8 @@ import profile3Post from './images/profile3-post.jpg'
 export default function Post(
   { savedPosts,
     setSavedPosts,
-    savedPosts1,
-    setSavedPosts1,
-    savedPosts2,
-    setSavedPosts2,
-    savedPosts3,
-    setSavedPosts3
+    bookmark,
+    setBookmark
   }) {
   return (
     <div className="post-container">
@@ -25,10 +21,16 @@ export default function Post(
         postTime="3 day"
         likes={7809}
         caption="Film anime Haikyuu!! The Movie: Decivise Battle at the Garbage Dump merilis visual terbaru!..."
-        commentar='243'
+        commentar='584'
         savedPosts={savedPosts} setSavedPosts={setSavedPosts}
-        bookmark={savedPosts1}
-        setBookmark={setSavedPosts1}
+        bookmark={bookmark[0]}
+        setBookmark={() => {
+          setBookmark((prev) => {
+            const newState = [...prev];
+            newState[0] = !newState[0];
+            return newState;
+          });
+        }}
       />
       <Posting
         profileImg={profile2}
@@ -39,8 +41,14 @@ export default function Post(
         caption="ONIC menjadi sosok menyeramkan pada M5 World Championship kali ini. ..."
         commentar='8321'
         savedPosts={savedPosts} setSavedPosts={setSavedPosts}
-        bookmark={savedPosts2}
-        setBookmark={setSavedPosts2}
+        bookmark={bookmark[1]}
+        setBookmark={() => {
+          setBookmark((prev) => {
+            const newState = [...prev];
+            newState[1] = !newState[1];
+            return newState;
+          });
+        }}
       />
       <Posting
         profileImg={profile}
@@ -51,8 +59,14 @@ export default function Post(
         caption="Diantara doa untuk meruqyah diri sendiri..."
         commentar='243'
         savedPosts={savedPosts} setSavedPosts={setSavedPosts}
-        bookmark={savedPosts3}
-        setBookmark={setSavedPosts3}
+        bookmark={bookmark[2]}
+        setBookmark={() => {
+          setBookmark((prev) => {
+            const newState = [...prev];
+            newState[2] = !newState[2];
+            return newState;
+          });
+        }}
       />
     </div>
   )
