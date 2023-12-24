@@ -18,6 +18,16 @@ import './Component/Story/story.css'
 import './Component/Navbar/navbar.css'
 import './App.css'
 
+// Posting //
+
+import profile from './images/profile.jpg'
+import profilePost from './images/profile-post.jpg'
+import profile2 from './images/profile2.jpg'
+import profile2Post from './images/profile2-post.jpg'
+import profile3 from './images/profile3.jpg'
+import profile3Post from './images/profile3-post.jpg'
+
+// Posting //
 
 export default function App() {
   const [activeTab, setActiveTab] = useState(null);
@@ -36,6 +46,36 @@ export default function App() {
 
   const [savedPosts, setSavedPosts] = useState([]);
   const [bookmark, setBookmark] = useState([false, false, false]);
+
+  const posting = [
+    {
+      profileImg: profile3,
+      username: "museid.acg",
+      postImg: profile3Post,
+      postTime: "3 days",
+      likes: 7809,
+      caption: "Film anime Haikyuu!! The Movie: Decisive Battle at the Garbage Dump releases a new visual!...",
+      commentar: '584',
+    },
+    {
+      profileImg: profile2,
+      username: "mpl.id.official",
+      postImg: profile2Post,
+      postTime: "1 hour",
+      likes: 42099,
+      caption: "ONIC emerges as a formidable presence in the M5 World Championship this time...",
+      commentar: '8321',
+    },
+    {
+      profileImg: profile,
+      username: "shahihfiqih",
+      postImg: profilePost,
+      postTime: "1 day",
+      likes: 2206,
+      caption: "Among the prayers for self-ruqyah...",
+      commentar: '243',
+    },
+  ];
 
 
   return (
@@ -60,6 +100,7 @@ export default function App() {
                 setSavedPosts={setSavedPosts}
                 bookmark={bookmark}
                 setBookmark={setBookmark}
+                posting={posting}
               />
               <Sarankan />
             </div>
@@ -116,6 +157,8 @@ export default function App() {
               <Bookmark
                 savedPosts={savedPosts}
                 bookmark={bookmark}
+                setSavedPosts={setSavedPosts}
+                posting={posting}
               />
             </div>
           }

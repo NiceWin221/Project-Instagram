@@ -1,18 +1,24 @@
-import './bookmark.css'
-import { useNavigate } from 'react-router-dom'
-import BMClicked from './bmclicked'
-import { useState } from 'react'
+import './bookmark.css';
+import { useNavigate } from 'react-router-dom';
+import BMClicked from './bmclicked';
+import { useState } from 'react';
 
-export default function Bookmark({ savedPosts, bookmark }) {
-  const navigate = useNavigate()
-  const [postActive, setPostActive] = useState(false)
+export default function Bookmark({ savedPosts, bookmark, posting }) {
+  const navigate = useNavigate();
+  const [postActive, setPostActive] = useState(false);
+  const [postClick, setPostClick] = useState(null);
+  const [postSaved, setPostSaved] = useState([])
 
-  const handlePostActive = () => {
-    setPostActive(true)
-  }
+  const handlePostClick = (index) => {
+    const clickedPost = savedPosts[index]
+    setPostSaved((prevPostSaved) => [...prevPostSaved, clickedPost])
+    setPostClick(index);
+    setPostActive(true);
+  };
+
   const handleBack = () => {
-    navigate('/profile')
-  }
+    navigate('/profile');
+  };
 
   return (
     <>
@@ -23,8 +29,8 @@ export default function Bookmark({ savedPosts, bookmark }) {
         </div>
         <h1>Semua Postingan</h1>
         <div className="bookmark-saved">
-          {savedPosts.map((post) => (
-            <div key={post.postImg} className="bookmark" onClick={handlePostActive}>
+          {savedPosts.map((post, index) => (
+            <div key={post.postImg} className="bookmark" onClick={() => handlePostClick(index)}>
               <img src={post.postImg} alt={post.caption} />
               <div className='bookmark-details'>
                 <div style={{ display: 'flex', gap: '10px' }}>
@@ -42,9 +48,23 @@ export default function Bookmark({ savedPosts, bookmark }) {
       </div>
       {postActive && (
         <div className="bmclicked-parent">
-          <BMClicked savedPosts={savedPosts} postActive={postActive} setPostActive={setPostActive} bookmark={bookmark[1]} />
+          <BMClicked
+            key={postClick}
+            postSaved={postSaved}
+            setPostSaved={setPostSaved}
+            postActive={postActive}
+            setPostActive={setPostActive}
+            bookmark={bookmark[postClick]}
+            profileImg={posting[postClick].profileImg}
+            username={posting[postClick].username}
+            postImg={posting[postClick].postImg}
+            postTime={posting[postClick].postTime}
+            likes={posting[postClick].likes}
+            caption={posting[postClick].caption}
+            commentar={posting[postClick].commentar}
+          />
         </div>
       )}
     </>
-  )
+  );
 }
