@@ -1,17 +1,40 @@
 import './bookmark.css'
 import Post from './images/post.jpg'
 import Profile from './images/profile.jpg'
+import Profile2 from './images/profile2.jpg'
+import { useState } from 'react'
 
 export default function BMClicked({
   postSaved,
   setPostSaved,
   setPostActive,
-  bookmark
+  bookmark,
+  liked
 }) {
   const handlePostUnActive = () => {
     setPostActive(false)
     setPostSaved([])
   }
+
+  const [comment, setComment] = useState('');
+  const [postComments, setPostComments] = useState({});
+
+  const handleInputChange = (event) => {
+    setComment(event.target.value);
+    console.log(comment);
+  };
+
+  const handleCommentSubmit = (postId) => {
+    // Create a copy of the current post comments
+    const currentPostComments = postComments[postId] || [];
+    // Add the new comment to the copy
+    const newComment = { username: 'wybnsa', text: comment, time: new Date().toLocaleString() };
+    const updatedComments = [...currentPostComments, newComment];
+    // Update the state with the new comments
+    setPostComments({ ...postComments, [postId]: updatedComments });
+    // Clear the comment input
+    setComment('');
+  };
 
   return (
     <>
@@ -24,18 +47,41 @@ export default function BMClicked({
             <div className="bmclicked-profile">
               <img src={post.profileImg} />
               <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                <p>{post.username}</p>
+                <p style={{ fontWeight: 'bolder' }}>{post.username}</p>
                 <i className="fa-solid fa-circle" style={{ fontSize: '3px' }}></i>
                 <p style={{ color: '#1890ff' }}>ikuti</p>
               </div>
               <i className="fa-solid fa-ellipsis" style={{ marginLeft: 'auto' }}></i>
             </div>
             <div className="bmclicked-commentar">
-
+              <div className="account-comment">
+                <img src={post.profileImg} />
+                <div>
+                  <span style={{ fontWeight: 'bolder' }}>{post.username}</span> <span style={{ display: 'inline', color: 'rgba(255, 255, 255, 0.9)' }}>
+                    {post.caption}
+                  </span>
+                  <span style={{ color: 'rgba(255, 255, 255, 0.5)', alignItems: 'center', display: 'flex', gap: '5px', marginTop: '7px' }}>Telah disunting <i className="fa-solid fa-circle" style={{ fontSize: '3px', paddingTop: '2px' }}></i> {post.postTime}</span>
+                </div>
+              </div>
+              {postComments[post.postImg] &&
+                postComments[post.postImg].map((comment, index) => (
+                  <div className="account-comment" key={index}>
+                    <img src={Profile2} alt="Profile" />
+                    <div>
+                      <span style={{ fontWeight: 'bolder' }}>{comment.username}</span>{' '}
+                      <span style={{ display: 'inline', color: 'rgba(255, 255, 255, 0.8)' }}>
+                        {comment.text}
+                      </span>
+                      <span style={{ color: 'rgba(255, 255, 255, 0.5)', alignItems: 'center', display: 'flex', gap: '5px', marginTop: '7px' }}>
+                        {comment.time}
+                      </span>
+                    </div>
+                  </div>
+                ))}
             </div>
             <div className="bmclicked-like">
               <div className="bmclicked-like-details">
-                <i className="fa-solid fa-heart"></i>
+                <i className={`fa-${liked === true ? 'solid' : 'regular'} fa-heart ${liked === true ? 'liked' : ''}`}></i>
                 <i className="fa-regular fa-comment"></i>
                 <i className="fa-regular fa-paper-plane"></i>
                 <i className={`fa-${bookmark === true ? 'solid' : 'regular'} fa-bookmark ${bookmark === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} ></i>
@@ -46,8 +92,13 @@ export default function BMClicked({
               </div>
               <div className="bmclicked-comment">
                 <i className="fa-regular fa-face-smile"></i>
-                <input type="text" placeholder='Tambahkan komentar...' />
-                <p>Kirim</p>
+                <input
+                  type="text"
+                  placeholder='Tambahkan komentar...'
+                  value={comment}
+                  onChange={handleInputChange}
+                />
+                <button className={`kirim-button ${comment.trim() !== '' ? 'remove-button' : ''}`} onClick={() => handleCommentSubmit(post.postImg)}>Kirim</button>
               </div>
             </div>
           </div>

@@ -94,12 +94,18 @@
   width: 470px;
   height: 155px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: black;
 }
 .bmclicked-like-details{
   display: flex;
   gap: 15px;
   font-size: 22px;
   padding: 10px 20px;
+}
+.bmclicked-commentar{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 480px;
 }
 .bmclicked-comment{
   display: flex;
@@ -115,10 +121,16 @@
   width: 350px;
   color: rgba(255, 255, 255, 1);
 }
-.bmclicked-comment p{
+.kirim-button{
   font-size: 15px;
   color: rgba(255, 255, 255, 0.5);
   margin-left: auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.kirim-button.remove-button{
+  color: #1890ff;
 }
 .post-close{
   position: absolute;
@@ -127,4 +139,16 @@
   color: white;
   font-size: 25px;
   cursor: pointer;
+}
+
+.account-comment{
+  display: flex;
+  padding: 20px;
+  font-size: smaller;
+  gap: 15px;
+}
+.account-comment img{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }

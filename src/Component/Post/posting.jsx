@@ -11,9 +11,10 @@ export default function Posting({
   savedPosts,
   setSavedPosts,
   bookmark,
-  setBookmark
+  setBookmark,
+  liked,
+  setLiked
 }) {
-  const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(() => {
     // Initialize with local storage value or default to false
     const savedState = localStorage.getItem('savedState');

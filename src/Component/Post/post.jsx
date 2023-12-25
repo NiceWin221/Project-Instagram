@@ -1,7 +1,7 @@
 import React from 'react';
 import Posting from './posting';
 
-const Post = ({ savedPosts, setSavedPosts, bookmark, setBookmark, posting }) => {
+const Post = ({ savedPosts, setSavedPosts, bookmark, setBookmark, posting, liked, setLiked }) => {
   return (
     <div className='post-container'>
       {posting.map((post, index) => (
@@ -16,6 +16,14 @@ const Post = ({ savedPosts, setSavedPosts, bookmark, setBookmark, posting }) => 
           commentar={post.commentar}
           savedPosts={savedPosts}
           setSavedPosts={setSavedPosts}
+          liked={liked[index]}
+          setLiked={() => {
+            setLiked((prev) => {
+              const newLiked = [...prev]
+              newLiked[index] = !newLiked[index]
+              return newLiked
+            })
+          }}
           bookmark={bookmark[index]}
           setBookmark={() => {
             setBookmark((prev) => {

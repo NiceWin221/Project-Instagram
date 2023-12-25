@@ -44,6 +44,7 @@ export default function App() {
   const [storyScroll, setStoryScroll] = useState(0);
 
 
+  const [liked, setLiked] = useState([false, false, false]);
   const [savedPosts, setSavedPosts] = useState([]);
   const [bookmark, setBookmark] = useState([false, false, false]);
 
@@ -54,7 +55,7 @@ export default function App() {
       postImg: profile3Post,
       postTime: "3 days",
       likes: 7809,
-      caption: "Film anime Haikyuu!! The Movie: Decisive Battle at the Garbage Dump releases a new visual!...",
+      caption: "Film anime “Haikyu!! The Movie: Decisive Battle at the Garbage Dump merilis visual terbaru! Tayang mulai 16 Februari di bioskop-bioskop Jepang. ",
       commentar: '584',
     },
     {
@@ -63,7 +64,7 @@ export default function App() {
       postImg: profile2Post,
       postTime: "1 hour",
       likes: 42099,
-      caption: "ONIC emerges as a formidable presence in the M5 World Championship this time...",
+      caption: "ONIC menjadi sosok menyeramkan pada M5 World Championship kali ini. Dominasi kelima roster utama yang tidak terhentikan dari mulai MPL Indonesia Season 10 sampai MPL Indonesia Season 12 membuat mereka menjadi Boss terakhir yang segan dihadapi oleh semua lawan. 🔥🤯🇮🇩",
       commentar: '8321',
     },
     {
@@ -101,6 +102,8 @@ export default function App() {
                 bookmark={bookmark}
                 setBookmark={setBookmark}
                 posting={posting}
+                liked={liked}
+                setLiked={setLiked}
               />
               <Sarankan />
             </div>
@@ -159,6 +162,8 @@ export default function App() {
                 bookmark={bookmark}
                 setSavedPosts={setSavedPosts}
                 posting={posting}
+                liked={liked}
+                setLiked={setLiked}
               />
             </div>
           }

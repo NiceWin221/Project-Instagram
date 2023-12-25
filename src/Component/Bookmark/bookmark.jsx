@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BMClicked from './bmclicked';
 import { useState } from 'react';
 
-export default function Bookmark({ savedPosts, bookmark, posting }) {
+export default function Bookmark({ savedPosts, bookmark, posting, liked, setLiked }) {
   const navigate = useNavigate();
   const [postActive, setPostActive] = useState(false);
   const [postClick, setPostClick] = useState(null);
@@ -55,6 +55,7 @@ export default function Bookmark({ savedPosts, bookmark, posting }) {
             postActive={postActive}
             setPostActive={setPostActive}
             bookmark={bookmark[postClick]}
+            liked={liked[postClick]}
             profileImg={posting[postClick].profileImg}
             username={posting[postClick].username}
             postImg={posting[postClick].postImg}
