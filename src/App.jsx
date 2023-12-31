@@ -94,6 +94,7 @@ export default function App() {
       likes: 7809,
       caption: "Film anime “Haikyu!! The Movie: Decisive Battle at the Garbage Dump merilis visual terbaru! Tayang mulai 16 Februari di bioskop-bioskop Jepang. ",
       commentar: '584',
+      id: 1
     },
     {
       profileImg: profile2,
@@ -103,6 +104,7 @@ export default function App() {
       likes: 42099,
       caption: "ONIC menjadi sosok menyeramkan pada M5 World Championship kali ini. Dominasi kelima roster utama yang tidak terhentikan dari mulai MPL Indonesia Season 10 sampai MPL Indonesia Season 12 membuat mereka menjadi Boss terakhir yang segan dihadapi oleh semua lawan. 🔥🤯🇮🇩",
       commentar: '8321',
+      id: 2
     },
     {
       profileImg: profile,
@@ -112,6 +114,7 @@ export default function App() {
       likes: 2206,
       caption: "Among the prayers for self-ruqyah...",
       commentar: '243',
+      id: 3
     },
   ];
 

@@ -18,7 +18,7 @@ export default function SaveButton({
     savedb = event.target.result;
     if (!savedb.objectStoreNames.contains("saveInstagram")) {
       const objectStore = savedb.createObjectStore("saveInstagram", {
-        keyPath: "id",  // Set keyPath to null for auto-incrementing keys
+        keyPath: "id",
         autoIncrement: true,
       });
     }
@@ -28,19 +28,29 @@ export default function SaveButton({
   const handleSaved = () => {
     setBookmark(!bookmark);
 
-    // Open a transaction and add the specific post to the indexedDB
     const tx = savedb.transaction("saveInstagram", "readwrite");
     const store = tx.objectStore("saveInstagram");
 
-    const objectStore = store.add(posting);
+    if (bookmark) {
+      const deleteStore = store.delete(posting.id)
+      deleteStore.onsuccess = (e) => {
+        console.log('Post unsaved successfully');
+      };
 
-    objectStore.onsuccess = (e) => {
-      console.log('Post saved successfully');
-    };
+      deleteStore.onerror = (e) => {
+        console.error('Error unsaving post:', e.target.error);
+      };
+    } else {
+      const objectStore = store.add(posting);
 
-    objectStore.onerror = (e) => {
-      console.error('Error saving post:', e.target.error);
-    };
+      objectStore.onsuccess = (e) => {
+        console.log('Post saved successfully');
+      };
+
+      objectStore.onerror = (e) => {
+        console.error('Error saving post:', e.target.error);
+      };
+    }
   };
 
   return (

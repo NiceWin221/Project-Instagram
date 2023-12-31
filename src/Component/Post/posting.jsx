@@ -70,14 +70,14 @@ export default function Posting({
         <i className={`fa-${liked === true ? 'solid' : 'regular'} fa-heart ${liked === true ? 'liked' : ''}`} onClick={handleLiked}></i>
         <i className="fa-regular fa-comment"></i>
         <i className="fa-solid fa-paper-plane"></i>
-        <SaveButton 
-        bookmark={bookmark} 
-        savedPosts={savedPosts} 
-        setSavedPosts={setSavedPosts} 
-        setBookmark={setBookmark} 
-        posting={posting}
-        postIndex={postIndex}
-        savedb={savedb}
+        <SaveButton
+          bookmark={bookmark}
+          savedPosts={savedPosts}
+          setSavedPosts={setSavedPosts}
+          setBookmark={setBookmark}
+          posting={posting}
+          postIndex={postIndex}
+          savedb={savedb}
         />
       </div>
       <div className="post-details">
