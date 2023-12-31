@@ -1,15 +1,36 @@
 import './profile.css'
 import Profile1 from './images/profile.jpg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Aboutus from '../Aboutus/aboutus'
 import '../Aboutus/aboutus.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function Profile({ savedPosts }) {
+export default function Profile({ savedPosts, savedb, fetchData, showResult }) {
   const [active, setActive] = useState(1)
   const handleActive = (numb) => {
     setActive(numb)
   }
+
+  useEffect(() => {
+    const save = indexedDB.open('save', 1);
+
+    save.addEventListener('success', (event) => {
+      savedb = event.target.result;
+      showResult();
+    });
+
+    save.addEventListener('upgradeneeded', (event) => {
+      savedb = event.target.result;
+      if (!savedb.objectStoreNames.contains('saveInstagram')) {
+        const objectStore = savedb.createObjectStore('saveInstagram', {
+          keyPath: 'id', // Set keyPath to null for auto-incrementing keys
+          autoIncrement: true,
+        });
+      }
+    }, []);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const navigate = useNavigate()
   const handleBookmark = () => {
@@ -51,7 +72,7 @@ export default function Profile({ savedPosts }) {
           <i className="fa-solid fa-table-cells"></i>
           <p>POSTINGAN</p>
         </div>
-        <div className={`tersimpan ${active === 2 ? 'active' : ''}`} onClick={() => handleActive(2)}>
+        <div className={`tersimpan ${active === 2 ? 'active' : ''}`} onClick={() => { showResult(); handleActive(2) }}>
           <i className="fa-regular fa-bookmark"></i>
           <p>TERSIMPAN</p>
         </div>
@@ -66,17 +87,18 @@ export default function Profile({ savedPosts }) {
           <h1>Belum Ada Postingan</h1>
         </div>
       ) : ''}
-      {active === 2 ? (
-        <div className="saved-parent">
-          <div className="saved-post" onClick={handleBookmark}>
-            {savedPosts.map((post) => (
-              <div key={post.postImg} className="saved-cover">
-                <img src={post.postImg} alt={post.caption} />
-              </div>
-            ))}
+      {active === 2 ?
+        (
+          <div className="saved-parent">
+            <div className="saved-post" onClick={() => { handleBookmark(); showResult(); }}>
+              {fetchData.map((post) => (
+                <div className="saved-cover" key={post.postImg}>
+                  <img src={post.postImg} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ) : ''}
+        ) : ''}
       {active === 3 ? (
         <div className="liked-post">
 

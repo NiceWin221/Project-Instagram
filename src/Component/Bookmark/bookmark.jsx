@@ -1,9 +1,9 @@
 import './bookmark.css';
 import { useNavigate } from 'react-router-dom';
 import BMClicked from './bmclicked';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function Bookmark({ savedPosts, bookmark, posting, liked, setLiked }) {
+export default function Bookmark({ savedPosts, bookmark, posting, liked, fetchData, savedb, showResult }) {
   const navigate = useNavigate();
   const [postActive, setPostActive] = useState(false);
   const [postClick, setPostClick] = useState(null);
@@ -20,6 +20,27 @@ export default function Bookmark({ savedPosts, bookmark, posting, liked, setLike
     navigate('/profile');
   };
 
+  useEffect(() => {
+    const save = indexedDB.open('save', 1);
+
+    save.addEventListener('success', (event) => {
+      savedb = event.target.result;
+      showResult();
+    });
+
+    save.addEventListener('upgradeneeded', (event) => {
+      savedb = event.target.result;
+      if (!savedb.objectStoreNames.contains('saveInstagram')) {
+        const objectStore = savedb.createObjectStore('saveInstagram', {
+          keyPath: 'id', // Set keyPath to null for auto-incrementing keys
+          autoIncrement: true,
+        });
+      }
+    }, []);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div className="bookmark-container">
@@ -29,7 +50,7 @@ export default function Bookmark({ savedPosts, bookmark, posting, liked, setLike
         </div>
         <h1>Semua Postingan</h1>
         <div className="bookmark-saved">
-          {savedPosts.map((post, index) => (
+          {fetchData.map((post, index) => (
             <div key={post.postImg} className="bookmark" onClick={() => handlePostClick(index)}>
               <img src={post.postImg} alt={post.caption} />
               <div className='bookmark-details'>

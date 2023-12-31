@@ -30,6 +30,41 @@ import profile3Post from './images/profile3-post.jpg'
 // Posting //
 
 export default function App() {
+
+  // IndexedDB //
+
+  let savedb
+
+
+  const save = indexedDB.open('save', 1);
+
+  save.addEventListener("success", (event) => {
+    savedb = event.target.result;
+  });
+
+  save.addEventListener("upgradeneeded", (event) => {
+    savedb = event.target.result;
+    if (!savedb.objectStoreNames.contains("saveInstagram")) {
+      const objectStore = savedb.createObjectStore("saveInstagram", {
+        keyPath: "id",  // Set keyPath to null for auto-incrementing keys
+        autoIncrement: true,
+      });
+    }
+  });
+
+  const showResult = () => {
+    const tx = savedb.transaction("saveInstagram", "readwrite");
+    const store = tx.objectStore("saveInstagram");
+    const objectStore = store.getAll();
+    objectStore.onsuccess = (e) => {
+      const result = e.target.result
+      console.log(result)
+      setFetchData(result)
+    }
+  }
+
+  // IndexedDB //
+
   const [activeTab, setActiveTab] = useState(null);
   const [directActive, setDirectActive] = useState(true)
 
@@ -47,6 +82,8 @@ export default function App() {
   const [liked, setLiked] = useState([false, false, false]);
   const [savedPosts, setSavedPosts] = useState([]);
   const [bookmark, setBookmark] = useState([false, false, false]);
+
+  const [fetchData, setFetchData] = useState([])
 
   const posting = [
     {
@@ -104,6 +141,7 @@ export default function App() {
                 posting={posting}
                 liked={liked}
                 setLiked={setLiked}
+                savedb={savedb}
               />
               <Sarankan />
             </div>
@@ -145,6 +183,10 @@ export default function App() {
               />
               <Profile
                 savedPosts={savedPosts}
+                savedb={savedb}
+                fetchData={fetchData}
+                setFetchData={setFetchData}
+                showResult={showResult}
               />
             </div>
           }
@@ -164,6 +206,9 @@ export default function App() {
                 posting={posting}
                 liked={liked}
                 setLiked={setLiked}
+                fetchData={fetchData}
+                savedb={savedb}
+                showResult={showResult}
               />
             </div>
           }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SaveButton from "./savebutton";
 
 export default function Posting({
   profileImg,
@@ -13,14 +14,11 @@ export default function Posting({
   bookmark,
   setBookmark,
   liked,
-  setLiked
+  setLiked,
+  posting,
+  postIndex,
+  savedb
 }) {
-  const [saved, setSaved] = useState(() => {
-    // Initialize with local storage value or default to false
-    const savedState = localStorage.getItem('savedState');
-    return savedState ? JSON.parse(savedState) : false;
-  });
-
   const [postLikes, setPostLikes] = useState(likes);
   const [showPopUp, setShowPopUp] = useState(false);
   const [lastTap, setLastTap] = useState(0);
@@ -49,23 +47,6 @@ export default function Posting({
     setPostLikes((prevLikes) => (liked ? prevLikes - 1 : prevLikes + 1));
   };
 
-  const handleSaved = () => {
-    // Check if the post is already saved
-    const isAlreadySaved = savedPosts.some((post) => post.postImg === postImg);
-
-    if (!isAlreadySaved) {
-      // Save the post
-      setSavedPosts([...savedPosts, { profileImg, username, postImg, postTime, likes, caption, commentar }]);
-    } else {
-      // Unsave the post
-      setSavedPosts(savedPosts.filter((post) => post.postImg !== postImg));
-    }
-
-    // Toggle the saved state
-    setBookmark(!bookmark)
-  };
-
-
   useEffect(() => {
     return () => setLastTap(0);
   }, []);
@@ -89,17 +70,15 @@ export default function Posting({
         <i className={`fa-${liked === true ? 'solid' : 'regular'} fa-heart ${liked === true ? 'liked' : ''}`} onClick={handleLiked}></i>
         <i className="fa-regular fa-comment"></i>
         <i className="fa-solid fa-paper-plane"></i>
-        <i className={`fa-${bookmark === true ? 'solid' : 'regular'} fa-bookmark ${bookmark === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={() => {
-          handleSaved({
-            profileImg,
-            username,
-            postImg,
-            postTime,
-            likes,
-            caption,
-            commentar
-          })
-        }}></i>
+        <SaveButton 
+        bookmark={bookmark} 
+        savedPosts={savedPosts} 
+        setSavedPosts={setSavedPosts} 
+        setBookmark={setBookmark} 
+        posting={posting}
+        postIndex={postIndex}
+        savedb={savedb}
+        />
       </div>
       <div className="post-details">
         <p>{postLikes} likes</p>

@@ -1,12 +1,15 @@
 import React from 'react';
 import Posting from './posting';
 
-const Post = ({ savedPosts, setSavedPosts, bookmark, setBookmark, posting, liked, setLiked }) => {
+const Post = ({ savedPosts, setSavedPosts, bookmark, setBookmark, posting, liked, setLiked, savedb }) => {
   return (
     <div className='post-container'>
       {posting.map((post, index) => (
         <Posting
           key={index}
+          savedb={savedb}
+          postIndex={index}
+          posting={post}
           profileImg={post.profileImg}
           username={post.username}
           postImg={post.postImg}
