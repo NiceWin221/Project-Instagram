@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import BMClicked from './bmclicked';
 import { useState, useEffect } from 'react';
 
-export default function Bookmark({ savedPosts, bookmark, posting, liked, fetchData, savedb, showResult }) {
+export default function Bookmark({ fetchData, posting, liked, savedb, showResult }) {
   const navigate = useNavigate();
   const [postActive, setPostActive] = useState(false);
   const [postClick, setPostClick] = useState(null);
   const [postSaved, setPostSaved] = useState([])
 
   const handlePostClick = (index) => {
-    const clickedPost = savedPosts[index]
+    const clickedPost = fetchData[index]
     setPostSaved((prevPostSaved) => [...prevPostSaved, clickedPost])
     setPostClick(index);
     setPostActive(true);
@@ -75,7 +75,6 @@ export default function Bookmark({ savedPosts, bookmark, posting, liked, fetchDa
             setPostSaved={setPostSaved}
             postActive={postActive}
             setPostActive={setPostActive}
-            bookmark={bookmark[postClick]}
             liked={liked[postClick]}
             profileImg={posting[postClick].profileImg}
             username={posting[postClick].username}
@@ -84,6 +83,7 @@ export default function Bookmark({ savedPosts, bookmark, posting, liked, fetchDa
             likes={posting[postClick].likes}
             caption={posting[postClick].caption}
             commentar={posting[postClick].commentar}
+            savedb={savedb}
           />
         </div>
       )}

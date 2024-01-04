@@ -5,7 +5,7 @@ import Aboutus from '../Aboutus/aboutus'
 import '../Aboutus/aboutus.css'
 import { useNavigate } from 'react-router-dom'
 
-export default function Profile({ savedPosts, savedb, fetchData, showResult }) {
+export default function Profile({ savedb, fetchData, showResult }) {
   const [active, setActive] = useState(1)
   const handleActive = (numb) => {
     setActive(numb)

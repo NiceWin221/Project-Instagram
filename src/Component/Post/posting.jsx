@@ -9,14 +9,9 @@ export default function Posting({
   likes,
   caption,
   commentar,
-  savedPosts,
-  setSavedPosts,
-  bookmark,
-  setBookmark,
   liked,
   setLiked,
   posting,
-  postIndex,
   savedb
 }) {
   const [postLikes, setPostLikes] = useState(likes);
@@ -71,12 +66,7 @@ export default function Posting({
         <i className="fa-regular fa-comment"></i>
         <i className="fa-solid fa-paper-plane"></i>
         <SaveButton
-          bookmark={bookmark}
-          savedPosts={savedPosts}
-          setSavedPosts={setSavedPosts}
-          setBookmark={setBookmark}
           posting={posting}
-          postIndex={postIndex}
           savedb={savedb}
         />
       </div>

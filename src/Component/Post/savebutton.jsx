@@ -1,11 +1,64 @@
-// ...
+import { useEffect, useState } from "react";
 
 export default function SaveButton({
-  bookmark,
-  setBookmark,
   posting,
   savedb
 }) {
+  // Bookmark Toggle
+  const postId = posting.id
+  const [test, setTest] = useState(null)
+
+  useEffect(() => {
+    const request = indexedDB.open("myDatabase", 1);
+
+    request.onerror = function (event) {
+      console.error("Database error:", event.target.error);
+    };
+
+    request.onupgradeneeded = function (event) {
+      const db = event.target.result;
+      db.createObjectStore("likes", { keyPath: "id" });
+    };
+
+    request.onsuccess = function (event) {
+      const db = event.target.result;
+
+      const transaction = db.transaction(["likes"], "readwrite");
+      const objectStore = transaction.objectStore("likes");
+
+      const getLikedRequest = objectStore.get(postId);
+
+      getLikedRequest.onsuccess = function (event) {
+        const data = event.target.result;
+        setTest(data ? data.value : false);
+      };
+
+      transaction.oncomplete = function () {
+        db.close();
+      };
+    };
+  }, []);
+
+  useEffect(() => {
+    if (test !== null) {
+      const request = indexedDB.open("myDatabase", 1);
+
+      request.onerror = function (event) {
+        console.error("Database error:", event.target.error);
+      };
+
+      request.onsuccess = function (event) {
+        const db = event.target.result;
+
+        const transaction = db.transaction(["likes"], "readwrite");
+        const objectStore = transaction.objectStore("likes");
+
+        objectStore.put({ id: postId, value: test });
+
+        
+      };
+    }
+  }, [test]);
 
   // Open or create the indexedDB
   const save = indexedDB.open('save', 1);
@@ -26,12 +79,10 @@ export default function SaveButton({
 
 
   const handleSaved = () => {
-    setBookmark(!bookmark);
-
     const tx = savedb.transaction("saveInstagram", "readwrite");
     const store = tx.objectStore("saveInstagram");
 
-    if (bookmark) {
+    if (test) {
       const deleteStore = store.delete(posting.id)
       deleteStore.onsuccess = (e) => {
         console.log('Post unsaved successfully');
@@ -54,6 +105,6 @@ export default function SaveButton({
   };
 
   return (
-    <i className={`fa-${bookmark === true ? 'solid' : 'regular'} fa-bookmark ${bookmark === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={handleSaved}></i>
+    <i className={`fa-${test === true ? 'solid' : 'regular'} fa-bookmark ${test === true ? 'saved' : ''}`} style={{ marginLeft: 'auto' }} onClick={() => {setTest((prev) => !prev); handleSaved()}}></i>
   );
 }

@@ -34,7 +34,7 @@ export default function App() {
   // IndexedDB //
 
   let savedb
-
+  const [fetchData, setFetchData] = useState([])
 
   const save = indexedDB.open('save', 1);
 
@@ -81,9 +81,7 @@ export default function App() {
 
   const [liked, setLiked] = useState([false, false, false]);
   const [savedPosts, setSavedPosts] = useState([]);
-  const [bookmark, setBookmark] = useState([false, false, false]);
-
-  const [fetchData, setFetchData] = useState([])
+  const [bookmark, setBookmark] = useState([null, null, null]);
 
   const posting = [
     {
@@ -203,13 +201,12 @@ export default function App() {
                 handleActiveTab={handleActiveTab}
               />
               <Bookmark
-                savedPosts={savedPosts}
+                fetchData={fetchData}
+                setFetchData={setFetchData}
                 bookmark={bookmark}
-                setSavedPosts={setSavedPosts}
                 posting={posting}
                 liked={liked}
                 setLiked={setLiked}
-                fetchData={fetchData}
                 savedb={savedb}
                 showResult={showResult}
               />
