@@ -113,7 +113,7 @@ export default function App() {
       caption: "Among the prayers for self-ruqyah...",
       commentar: '243',
       id: 3
-    },
+    }
   ];
 
 

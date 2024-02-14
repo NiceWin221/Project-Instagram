@@ -1,16 +1,14 @@
 import './bookmark.css'
 import Profile2 from './images/profile2.jpg'
 import SaveButton from '../Post/savebutton'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function BMClicked({
   postSaved,
   setPostSaved,
   setPostActive,
   liked,
-  savedb,
-  test,
-  setTest
+  savedb
 }) {
   const handlePostUnActive = () => {
     setPostActive(false)
@@ -86,7 +84,7 @@ export default function BMClicked({
                 <i className="fa-regular fa-comment"></i>
                 <i className="fa-regular fa-paper-plane"></i>
                 <SaveButton
-                  posting={{ id: post.postImg }}
+                  posting={{ id: post.id }}
                   savedb={savedb}
                 />
               </div>
